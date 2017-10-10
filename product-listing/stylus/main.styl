@@ -1,0 +1,566 @@
+/* Variables and Mixins */
+$fontFamily = 'Roboto', sans-sarif
+$mainColor = #444
+$highlightColor = #edb81e
+
+headings = "h1, h2, h3, h4, h5, h6"
+
+$mobileNavWidth = 200px
+
+/* General */
+body
+    font-family: $fontFamily
+    font-weight: 400
+    color: $mainColor
+    margin-top: 50px
+    @media (min-width:992px)
+        max-width: 1236px
+        width: 100%
+        margin: 0 auto
+
+{headings}
+    color: #222222
+
+.page-header
+    position: fixed
+    width: 100%
+    background: #fff
+    top: 0
+    border-bottom: solid 1px #eee
+    z-index: 1
+    @media (min-width:992px)
+        max-width: 1236px
+        width: 100%
+        margin: 0 auto
+        position: relative
+
+// Nav Trigger
+.nav-trigger
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    @media all and (min-width:992px)
+        display:none
+
+label[for="nav-trigger"]
+    position: absolute;
+    left: 10px; top: 10px;
+    z-index: 2;
+    cursor: pointer;
+    color: #888
+    &:after
+        content: '\f0c9'
+        font-family: FontAwesome
+        font-size: 25px
+    @media all and (min-width:992px)
+        display:none
+
+
+.nav-trigger:checked ~ .page-nav, .nav-trigger:checked ~ .page-extras
+    left: 0;
+
+.nav-trigger:checked ~ label[for="nav-trigger"]
+    color: #ffffff
+
+// Search, Phone, Cart
+.page-extras
+    position: absolute
+    width: $mobileNavWidth
+    left: -(@width)
+    top: 0
+    background: alpha(#333, 0.98)
+    text-align: right
+    transition: left 0.2s;
+    @media all and (min-width:992px)
+        background: none 
+        top: auto
+        bottom: 60px
+        right: 0
+        left: auto
+        width: 50%
+
+.fa.page-cart_icon
+    font-size: 25px
+    @media all and (min-width:992px)
+        display: block
+
+.page-phone,
+.page-cart
+    display: inline-block
+    text-align: right
+    width: auto
+    height: 24px
+    color: #ffffff
+    padding: 10px 10px 10px 0
+    @media all and (min-width:992px)
+        color: $mainColor
+        height: auto
+        padding: 0 10px
+
+@media all and (min-width:992px)
+    .page-phone
+        width:170px
+        text-align: left
+
+.fa.page-phone_icon
+    font-size: 25px
+    @media all and (min-width:992px)
+        font-size: 31px
+        float: left
+        margin-top: 3px
+        margin-right: 5px
+
+.page-phone_num,
+.page-phone_text
+    display: none
+    @media all and (min-width:992px)
+        display:block
+
+.page-phone_num
+    font-weight: 900
+    font-size: 20px
+
+.page-phone_text
+    font-weight: 400
+    font-size: 12px
+
+.page-search
+    position: relative
+    @media all and (min-width:992px)
+        float: left
+        display: inline-block
+        margin-top: 5px
+
+.page-search_field
+    height: 50px
+    width: 100%
+    box-sizing: border-box
+    border-radius: 0
+    border: none
+    @media all and (min-width:992px)
+        width: 337px
+        height: 30px
+        background: #eeeeee
+        padding: 3px 10px
+        box-sizing: border-box
+
+.page-search_field::placeholder
+    font-size: 20px
+    color: #bdbdbd
+    font-weight: 300
+    font-family: 'Roboto'
+    @media all and (min-width:992px)
+        font-size: 16px
+    
+.page-search_submit
+    position: absolute
+    right: 10px
+    top: 10px
+    background: none 
+    border: none
+    padding: 0
+    color: #888888
+    @media (min-width:992px)
+        right: 7px
+        top: 5px
+
+.fa.page-search_icon
+    font-size: 25px
+    @media (min-width:992px)
+        font-size: 18px
+
+// NAVIGATION
+.page-nav
+    width: $mobileNavWidth
+    position: absolute
+    left: -(@width)
+    transition: left 0.2s;
+    margin-top: 35px
+    @media (min-width:992px)
+        position: relative
+        margin: 0
+        left: auto
+        width: 100%
+        background: #222
+
+.page-nav_main
+    background: alpha(#333, 0.98)
+    list-style-type: none
+    padding: 0
+    margin: 0
+    @media (min-width:992px)
+        display: flex
+        flex: row wrap
+        text-align: center
+
+.page-nav_main li
+    border-bottom: 1px solid lighten($mainColor, 10%)
+    @media (min-width:992px)
+        display: inline-block
+        flex-grow: 1
+
+.page-nav_main a
+    color: white
+    padding: 15px 10px
+    display: inline-block
+    text-decoration: none
+    font-size: 16px
+    font-weight: 300
+    &:hover
+        background: $mainColor
+
+.dropdown-trigger
+    position: absolute
+    clip: rect(0, 0, 0, 0)
+    @media (min-width:992px)
+        display: none
+
+.dropdown-arrow
+    float: right
+    height: 13px
+    width: 13px
+    border: 1px solid #888888
+    border-width: 2px 2px 0 0
+    transform: rotate(45deg)
+    padding: 0
+    margin: 17px 10px 0
+    z-index: 2
+    cursor: pointer
+    display: block
+    transition: all 0.2s
+    @media (min-width:992px)
+        display: none
+
+for trigger in exteriorAccessories interiorAccessories lighting performance specialty suspension wheelsTires shopBrand
+    .page-nav_main #{trigger}-trigger:checked ~ .sub-nav
+        left: 0;
+        position: relative
+
+    .page-nav_main #{trigger}-trigger:checked ~ .dropdown-arrow
+        transform: rotate(135deg)
+
+.page-nav_main .sub-nav
+    list-style-type: none
+    padding: 0
+    width: $mobileNavWidth
+    left: -(@width)
+    transition: all 0.2s
+    position: absolute
+    @media (min-width:920px)
+        position: relative
+        left: auto
+        display: flex
+        flex-direction: column
+        width: auto
+        display: none
+
+.page-nav_main .sub-nav li
+    border-top: 1px solid lighten($mainColor, 10%)
+    border-bottom: none
+
+.page-nav_main .sub-nav a
+    padding-left: 30px
+    color: $highlightColor
+
+// logo
+.logo
+    width: 168px
+    margin: 10px auto
+    @media all and (min-width:480px)
+        width: 237px
+    @media all and (min-width:992px)
+        width: 287px
+        margin: 20px 10px 5px
+    img
+        width: 100%
+        height: auto
+
+/* Hero Image */
+.hero-image
+    background: url(../img/truck-mobile.jpg) center no-repeat
+    height: 160px
+    background-size: cover
+    @media all and (min-width:480px)
+        background-image: url(../img/truck-tablet.jpg)
+        height: 379px
+    @media all and (min-width:992px)
+        background-image: url(../img/truck-desktop.jpg)
+        margin-top: 10px
+
+// Page Body
+.page-body
+    margin: 10px
+    @media (min-width:992px)
+        margin-top: 0
+
+// Page Heading
+.page-heading
+    @media all and (min-width:480px)
+        margin: -79px -10px 0
+        background: alpha($highlightColor, 90%)
+        padding: 10px
+    @media all and (min-width:992px)
+        width: 396px
+        float: left
+        padding: 30px 10px
+        margin: -120px 0 0
+
+.page-heading .category
+    font-size: 12px
+    @media all and (min-width:480px)
+        margin: 0
+
+.page-heading h1
+    margin-top: 0
+    @media all and (min-width:480px)
+        margin-bottom: 0
+    @media all and (min-width:992px)
+        color: #fff
+
+// Page Info
+.page-info
+    font-weight: 700
+    position relative
+    @media all and (min-width:480px)
+        background: #eeeeee
+        padding: 10px
+        margin: 0 -10px
+
+.page-numbers
+    display: inline-block
+    width: 49%
+    @media all and (min-width:480px)
+        width: 25%
+        
+.page-sort 
+    text-align: right
+    position relative
+    z-index: 1
+    text-transform: uppercase
+    display: inline-block
+    width: 49%
+    @media all and (min-width:480px)
+        display: none
+        visibility hidden
+    i
+        color: #888888
+
+.page-sort-trigger
+    position: absolute
+    clip: rect(0, 0, 0, 0)
+    @media all and (min-width:480px)
+        display: none
+        visibility hidden
+
+.page-sort-trigger:checked ~ .page-sort_box
+    display: block;
+    opacity: 100
+
+.page-sort_box
+    width: 242px
+    height: 100px
+    background: #eeeeee
+    box-shadow: -5px 5px 10px alpha(#000, 40%)
+    position: absolute 
+    right: -10px
+    padding: 10px
+    top: -10px
+    z-index: 0
+    display: none
+    opacity: 0
+    transition: all 0.2s
+    @media all and (min-width:480px)
+        display: inline-block
+        position: relative
+        height: auto
+        opacity: 100
+        width: 74%
+        text-align: right
+        box-shadow: none 
+        height: auto
+        box-sizing: border-box
+        background: none
+        padding: 0
+        right: auto
+        top: auto
+    form 
+        position: absolute;
+        width: 100%;
+        bottom: 10px;
+        @media all and (min-width:480px)
+            position: relative
+            bottom: auto
+    label 
+        display: block
+        @media all and (min-width:480px)
+            display: inline
+
+.page-sort_show
+    width: 24%
+    display: inline-block
+    vertical-align: bottom
+    box-sizing: border-box
+    @media all and (min-width:480px)
+        width: auto
+
+.page-sort_sortBy
+    width: 70%
+    display: inline-block
+    vertical-align: bottom
+    box-sizing: border-box
+    margin-left: 2%
+    @media all and (min-width:480px)
+        width: auto
+
+
+// Products
+.products
+    margin: 20px 0
+    @media all and (min-width:480px)
+        display: flex
+        flex-flow: row wrap
+        justify-content: space-around
+
+.wheels
+    margin: 10px
+    padding-bottom: 10px
+    border-bottom: 1px solid #eee
+    @media all and (min-width:480px)
+        width: 45%
+        box-sizing: border-box
+    @media (min-width:992px)
+        width: 23%
+
+.wheel-img
+    width: 49%
+    display: inline-block
+    vertical-align: top
+    @media (min-width:992px)
+        width: 100%
+        display: block
+
+.wheel-info
+    width: 49%
+    display: inline-block
+    vertical-align: top
+    @media (min-width:992px)
+        width: 100%
+        display: block
+
+.wheel-name
+    font-weight: 900
+    font-size: 24px
+    margin: 10px 0 5px 0
+    @media all and (min-width:480px)
+        font-size: 21px
+        margin: 5px 0 15px
+
+.wheel-price 
+    font-size: 14px
+    span
+        font-weight: 900
+        display: block
+        font-size: 30px
+        @media all and (min-width:480px)
+            font-size: 26px
+            display: inline
+            float: right
+        @media (min-width:992px)
+            float: none
+
+// Page Count
+.pagination
+    text-align: center
+    font-weight: 700
+    @media (min-width:992px)
+        text-align: right
+
+.page-count
+    list-style-type: none
+    padding: 0
+    margin: 0
+    @media all and (min-width:480px)
+        border-top: 1px solid #dddddd
+        border-bottom: 1px solid #dddddd
+        display: inline-block
+        background: #fafafa
+
+.page-count li
+    padding: 0 5px
+    color: #666
+    @media all and (min-width:480px)
+        border-right: 1px solid #dddddd
+        padding: 10px 15px 10px 10px
+        &:first-child
+            border-left: 1px solid #dddddd
+
+.page-previous,
+.page-next
+    display: inline-block
+
+@media all and (min-width:480px)
+    .page-previous_text,
+    .page-next_text
+        display: none
+
+.page-previous_arrow
+    height: 13px
+    width: 13px
+    border: 1px solid #000
+    border-width: 1px 1px 0 0
+    transform: rotate(225deg)
+    padding: 0
+    margin: 0 2px -2px
+    cursor: pointer
+    display: inline-block
+    @media all and (min-width:480px)
+        margin-left: 8px
+
+.page-next_arrow
+    height: 13px
+    width: 13px
+    border: 1px solid #000
+    border-width: 1px 1px 0 0
+    transform: rotate(45deg)
+    padding: 0
+    margin: 0 2px -2px
+    cursor: pointer
+    display: inline-block
+    @media all and (min-width:480px)
+        margin-right: 8px
+        margin-left: 0
+
+.page-count_num 
+    display: none
+    @media all and (min-width:480px)
+        display: inline-block
+
+// Footer
+.page-footer
+    margin-top: 15px
+    background: #3d3d3d
+    padding: 15px
+    text-align: center
+    border-top: 12px solid $highlightColor
+    @media all and (min-width:480px)
+        overflow: hidden
+        text-align: left
+
+.page-footer svg
+    max-width: 165px
+    height: auto
+    @media all and (min-width:480px)
+        float: right
+        margin-top: 8px
+
+.page-footer .st0
+    fill: #fff
+
+.page-footer .st1
+    fill: #EDB81E
+
+.copyright
+    color: #d3d3d3
+    margin: 5px 0
+    font-size: 14px
+    @media all and (min-width:480px)
+        float: left
