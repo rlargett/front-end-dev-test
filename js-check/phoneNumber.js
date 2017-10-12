@@ -8,7 +8,15 @@
 // remove dots as in "321.321.4321"
 
 const phoneNumber = (pNum) => {
-
+	var pNumClean = pNum.replace(/\D/g,"");
+	var pNumLen = pNumClean.length;
+	if(pNumLen == 9){
+		return pNumLen = null;
+	} else if(pNumLen == 11 && pNumClean.match(/^[0,2-9]/) || pNumLen >= 12) {
+		return pNumClean = null;
+    } else {
+		return pNumClean;
+	}
 }
 
 module.exports = phoneNumber

@@ -15,6 +15,10 @@
 
 const unique = (arr) => {
   // Add your code here.
+  return arr.filter((elem, pos, arg) => {
+    return arg.indexOf(elem) == pos;
+  });
+
 }
 
 module.exports = unique
