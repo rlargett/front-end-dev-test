@@ -137,11 +137,13 @@ label[for="nav-trigger"]
     border-radius: 0
     border: none
     @media all and (min-width:992px)
-        width: 337px
+        width: 237px
         height: 30px
         background: #eeeeee
         padding: 3px 10px
         box-sizing: border-box
+    @media (min-width:1164px)
+        width: 337px
 
 .page-search_field::placeholder
     font-size: 20px
@@ -190,13 +192,23 @@ label[for="nav-trigger"]
     @media (min-width:992px)
         display: flex
         flex: row wrap
-        text-align: center
+        text-align: left
+        justify-content: center
+        align-items: center
 
 .page-nav_main li
     border-bottom: 1px solid lighten($mainColor, 10%)
     @media (min-width:992px)
         display: inline-block
         flex-grow: 1
+        position: relative
+        border-bottom: none
+    &:hover .sub-nav 
+        display: flex
+        flex-direction: column
+
+.page-nav_main li:first-child:hover .sub-nav
+    left: auto
 
 .page-nav_main a
     color: white
@@ -207,6 +219,10 @@ label[for="nav-trigger"]
     font-weight: 300
     &:hover
         background: $mainColor
+    @media (min-width:992px)
+        font-weight: 900
+        display: block
+        font-size: 14px
 
 .dropdown-trigger
     position: absolute
@@ -246,20 +262,32 @@ for trigger in exteriorAccessories interiorAccessories lighting performance spec
     transition: all 0.2s
     position: absolute
     @media (min-width:920px)
-        position: relative
-        left: auto
-        display: flex
-        flex-direction: column
+        left: -50%
         width: auto
+        min-width: 287px
         display: none
+        background: $mainColor url(../img/wheel.png) no-repeat 70px 0
+        background-blend-mode: darken
+        background-size: 294px 222px
+        padding: 50px 10px 10px 10px
+        box-shadow: 0 0 5px
 
 .page-nav_main .sub-nav li
     border-top: 1px solid lighten($mainColor, 10%)
     border-bottom: none
+    @media (min-width:920px)
+        border-top: none
 
 .page-nav_main .sub-nav a
     padding-left: 30px
     color: $highlightColor
+    @media (min-width:920px)
+        font-weight: 400
+        color: #ccc
+        padding: 10px
+        &:hover
+            background: none
+            color: $highlightColor
 
 // logo
 .logo
@@ -330,6 +358,10 @@ for trigger in exteriorAccessories interiorAccessories lighting performance spec
     width: 49%
     @media all and (min-width:480px)
         width: 25%
+    span
+        display: none
+        @media (min-width:992px)
+            display: inline
         
 .page-sort 
     text-align: right
@@ -418,10 +450,10 @@ for trigger in exteriorAccessories interiorAccessories lighting performance spec
     @media all and (min-width:480px)
         display: flex
         flex-flow: row wrap
-        justify-content: space-around
+        justify-content: space-between
 
 .wheels
-    margin: 10px
+    margin: 10px 0
     padding-bottom: 10px
     border-bottom: 1px solid #eee
     @media all and (min-width:480px)
